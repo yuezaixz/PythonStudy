@@ -10,6 +10,10 @@ class Solution:
         xStr = str(x)
         index = 1
         result = 0
+        # notice overflow
+        # notice the integer's last digit is 0
+        # so ,i use this method  handle such cases
+        # function returns 0 when the reversed integer overflows
         while index <= len(xStr):
             tempNum = int(xStr[index*-1])
             if INT_MAX/10 >= result :
@@ -27,4 +31,4 @@ class Solution:
 
 if __name__ == "__main__":
     so = Solution()
-    print so.reverse(1534236469)
+    print so.reverse(10100)

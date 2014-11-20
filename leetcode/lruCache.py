@@ -39,6 +39,7 @@ class LRUCache:
         if self.data.has_key(key):
             pvalue = self.data[key]
             value =  pvalue.value
+            # change the node to be recently visited one
             self.moveToFirst( pvalue )
             return value  
         else:
@@ -48,10 +49,16 @@ class LRUCache:
     # @param value, an integer
     # @return nothing
     def set(self, key, value):
+        # if has key, just have to change the value 
+        # and move it to first of queue
         if self.data.has_key(key):
             self.data[key].value = value
             self.moveToFirst( self.data[key] )
         else:
+            # 1) curSize < capacity, just insert   
+            # 2) curSize == capacity, remove LRU and insert  
+            # here use len to calculate current size,if you except more run-speed 
+            # you can use a local var to record the current size 
             self.Insert(key, value)
             if len(self.data) > self.capacity:
                 self.removeLRU()
