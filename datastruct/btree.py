@@ -38,6 +38,32 @@ def postorder(node):
         if node.right:
             postorder(node.right)
         node.show()
+def getDeepth(node):
+    if not node : return 0
+    leftDeepth = getDeepth(node.left)
+    rightDeepth = getDeepth(node.right)
+    if leftDeepth > rightDeepth:
+        return leftDeepth + 1
+    else:
+        return rightDeepth + 1
+
+
+def getWidth(node):
+    if not node : return 0
+    maxWidth = -1
+    layerNodes = [node]
+    while layerNodes:
+        tempNodes = []
+        currWidth = 0
+        for currNode in layerNodes:
+            if currNode.left: tempNodes.append(currNode.left)
+            if currNode.right: tempNodes.append(currNode.right)
+            currWidth += 1
+        layerNodes = tempNodes
+        maxWidth = max(maxWidth,currWidth)
+    return maxWidth
+
+            
                 
 if __name__ == "__main__":
     
@@ -58,5 +84,11 @@ if __name__ == "__main__":
 
     print "post-traversal"
     postorder(Root)
+
+    print "tree-deepth"
+    print getDeepth(Root)
+
+    print "tree-width"
+    print getWidth(Root)
 
         
