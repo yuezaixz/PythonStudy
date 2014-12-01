@@ -3,7 +3,6 @@ class Solution:
     # @return an integer
     def evalRPN(self, tokens):
         if not tokens : return -1
-        if len(tokens) == 1 : return int(tokens[0])
         operator = ["+","-","*","/"]
         operatorStack = []
         for operStr in tokens:
@@ -15,11 +14,7 @@ class Solution:
                 if operStr == '+': result = one + two
                 if operStr == '*': result = one * two
                 if operStr == '-': result = one - two
-                if operStr == '/': 
-                    if one*two < 0:
-                        result = -((-one)/two)
-                    else:
-                        result = one/two
+                if operStr == '/': result = -((-one)/two) if one*two < 0 else one/two
                 operatorStack.append(result)
             else:
                 operatorStack.append(int(operStr))
