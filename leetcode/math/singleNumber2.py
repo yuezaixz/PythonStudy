@@ -24,9 +24,10 @@ class Solution:
     def smartSolution(self,A):
         one = 0; two = 0; three = 0
         for i in range(len(A)):
-            #two为1时，不管A[i]为什么，two都为1
+            #和低位与操作，结果为进位结果。如果都为1则进位结果为1，否则进位结果不为0
+            #然后当two为1时，不管进位结果为什么，two都为1。如果two为0，则进位为1则为1
             two |= A[i] & one
-            #异或操作，都是1就进位
+            #异或操作，都是1就进位，低位one则清0
             one = A[i] ^ one
             #以下三步的意思是：如果one和two都为1时，就清0，反之则保持原来状态。
             three = ~(one & two)
