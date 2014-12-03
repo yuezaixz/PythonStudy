@@ -16,4 +16,4 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution().candy([1,2,1])
+    print Solution().candy([1,3,5])
